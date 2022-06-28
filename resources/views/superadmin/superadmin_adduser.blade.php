@@ -38,43 +38,58 @@
 
         <ul class="nav_list">
             <li>
-                <a href="/home">
+                <a href="/superadmin">
                     <i class='bx bxs-home'></i>
                     <span class="links_name">H O M E</span>
                 </a>
             </li>
 
             <li>
-                <a href="/manufaktur">
+                <a href="/superadmin_manufaktur">
                     <i class='bx bxs-briefcase-alt-2'></i>
                     <span class="links_name">M A N U F A C T U R E</span>
                 </a>
             </li>
 
             <li>
-                <a href="/inventory">
+                <a href="/superadmin_inventory1">
                     <i class='bx bxs-building'></i>
                     <span class="links_name">I N V E N T O R Y</span>
                 </a>
             </li>
 
             <li>
-                <a href="/payroll">
-                    <i class='bx bxs-wallet-alt' ></i>
-                    <span class="links_name">P A Y R O L L</span>
-                </a>
+                
+            <div class="dropdown">
+                <i class='bx bx-columns'></i>
+                <span class="dropbtn">P A Y R O L L</span>
+                <div class="dropdown-content">
+                    <a href="/superadmin_payroll">
+                        <i class='bx bxs-message-alt-add'></i>
+                        <span class="links_name">T A Y L O R</span>
+                    </a>
+                    <a href="/superadmin_detailtaylor">
+                        <i class='bx bxs-user-detail'></i>
+                        <span class="links_name">D E T A I L</span>
+                    </a>
+                </div>
+            </div>
+
             </li>
+       
             <li>
-                <a href="/register">
+                <a href="/superadmin_adduser">
                     <i class='bx bxs-user-plus' ></i>
                     <span class="links_name">A D D - U S E R</span>
                 </a>
             </li>
             <li>
-                <!-- <a href="/home">
-                    <i class='bx bxs-log-out'></i>
-                    <span class="links_name">L O G - O U T</span>
-                </a> -->
+                <a href="/superadmin_accounting">
+                    <i class='bx bxs-user-plus' ></i>
+                    <span class="links_name">A C C O U N T I N G</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
@@ -89,15 +104,20 @@
             </li>
         </ul>
 	</div>
-
+	
 	<div class="limiter">
 		<div class="container-regis100">
 			<div class="wrap-regis100">
 
 				<form method="POST" action="adduser" class="regis100-form validate-form">
+                @if(Session::has('success'))
+                    <script>
+                        var message="{{ Session::get('success') }}"
+                        alert(message);
+                    </script>
+                @endif
                  {{ csrf_field() }}
-				 <!-- <form method="POST" action="{{ route('register') }}">
-               		@csrf -->
+
 					<span class="regis100-form-title">
 						A D D - U S E R
 					</span>
@@ -105,8 +125,8 @@
 					<div class="wrap-input100 validate-input">
 						<select class="input100 @error('role') is-invalid @enderror" name="role" placeholder="Role" required>
 							<option value="superadmin">superadmin</option>
-							<option value="supervisor potong">supervisor potong</option>
-							<option value="supervisor pabrik">supervisor pabrik</option>
+							<option value="tukang_potong">tukang_potong</option>
+							<option value="supervisor_pabrik">supervisor_pabrik</option>
 							<option value="accounting">accounting</option>
 						</select>
 						<span class="focus-input100"></span>
@@ -119,14 +139,6 @@
 							</span>
 						@enderror
                 	</div>
-					<!-- ROLE lama
-					<div class="wrap-input100 validate-input">
-						<input class="input100" type="text" name="role" placeholder="Role">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class='bx bxs-briefcase-alt-2'></i>
-						</span>
-					</div> -->
 
 					<div class="wrap-input100 validate-input">
 						<input id="first_name" type="text" class="input100 @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" placeholder="First Name">
@@ -140,14 +152,6 @@
 							</span>
 						@enderror
 					</div>
-					<!-- First Name lama
-					<div class="wrap-input100 validate-input">
-						<input class="input100" type="text" name="first_name" placeholder="First Name">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class='bx bxs-user'></i>
-						</span>
-					</div> -->
 
 					<div class="wrap-input100 validate-input">
 						<input id="last_name" type="text" class="input100 @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" placeholder="Last Name">
@@ -161,14 +165,6 @@
 							</span>
 						@enderror
 					</div>
-					<!-- last_name lama
-					<div class="wrap-input100 validate-input">
-						<input class="input100" type="text" name="last_name" placeholder="Last Name">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class='bx bxs-user'></i>
-						</span>
-					</div> -->
 					
 					<div class="wrap-input100 validate-input">
 						<input id="no_hp" type="text" class="input100 @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp') }}" required autocomplete="no_hp" placeholder="No HP (ex. 08xxxx)">
@@ -182,20 +178,12 @@
 							</span>
 						@enderror
 					</div>
-					<!-- no_hp lama
-					<div class="wrap-input100 validate-input">
-						<input class="input100" type="text" name="no_hp" placeholder="No HP (ex. 08xxxx)">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class='bx bxs-phone'></i>
-						</span>
-					</div> -->
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 						<input id="email" type="email" class="input100 @error('no_hp') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
+							<i class='bx bxs-envelope'></i>
 						</span>
 						@error('email')
 							<span class="invalid-feedback" role="alert">
@@ -203,20 +191,12 @@
 							</span>
 						@enderror
 					</div>
-					<!-- Email lama
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email" placeholder="Email">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-					</div> -->
 
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
 						<input id="password" type="password" class="input100 @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
+							<i class='bx bxs-key' ></i>
 						</span>
 						@error('password')
 							<span class="invalid-feedback" role="alert">
@@ -224,33 +204,12 @@
 							</span>
 						@enderror
 					</div>
-					<!-- password lama
-					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="password" placeholder="Password">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
-					</div> -->
-
-					<div class="wrap-input100 validate-input" data-validate = "Confirm Password is required">
-						<input id="password-confirm" type="password" class="input100" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
-					</div>
 
 					<div class="container-login100-form-btn">
 						<button type="submit" class="login100-form-btn">
 							{{ __('ADD') }}
 						</button>
                     </div>
-					<!-- <div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Add
-						</button>
-					</div> -->
 
 				</form>
 			</div>

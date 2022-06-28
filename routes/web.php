@@ -14,50 +14,79 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth');
-// ->name('home'); //jd login
-
 Route::get('/protected', [App\Http\Controllers\ProtectedController::class, 'index'])->middleware('auth');
 
-
-Route::get('/home', [App\Http\Controllers\TestController::class,'view_inv'])->middleware('auth');
-
-Route::get('manufaktur','App\Http\Controllers\TestController@test')->middleware('auth');
-
-Route::post('simpanproduk','App\Http\Controllers\TestController@simpanproduk')->middleware('auth');
-
-Route::post('tambahproduk', [App\Http\Controllers\TestController::class,'tambahproduk'])->middleware('auth');
-
-Route::get('inventory', 'App\Http\Controllers\TestController@test1')->middleware('auth');
-
-Route::get('/inventory1', [App\Http\Controllers\TestController::class,'view_invv'])->middleware('auth');
-
-Route::get('/payroll', function () {
-    return view('payroll');
+// SUPERADMIN
+//-----home-----
+Route::get('/superadmin', [App\Http\Controllers\SuperadminController::class, 'index'])->middleware('auth');
+Route::get('/superadmin', [App\Http\Controllers\SuperadminController::class,'view_inv'])->middleware('auth');
+Route::get('/home', [App\Http\Controllers\SuperadminController::class,'view_inv'])->middleware('auth');
+//-----inventory-----
+Route::get('/superadmin_inventory1', [App\Http\Controllers\SuperadminController::class,'view_invv'])->middleware('auth');
+Route::get('superadmin_inventory', [App\Http\Controllers\SuperadminController::class,'test1'])->middleware('auth');
+Route::post('tambahproduk', [App\Http\Controllers\SuperadminController::class,'tambahproduk'])->middleware('auth');
+//-----manufaktur-----
+Route::get('superadmin_manufaktur',[App\Http\Controllers\SuperadminController::class, 'test'])->middleware('auth');
+Route::post('superadmin_simpanproduk',[App\Http\Controllers\SuperadminController::class, 'superadmin_simpanproduk'])->middleware('auth');
+//-----payroll-----
+Route::get('/superadmin_payroll', [App\Http\Controllers\SuperadminController::class,'view_jahit'])->middleware('auth');
+Route::get('superadmin_payroll1', [App\Http\Controllers\SuperadminController::class,'superadmin_payroll1'])->middleware('auth');
+Route::patch('superadmin_tambahpenjahit', [App\Http\Controllers\SuperadminController::class,'superadmin_tambahpenjahit'])->middleware('auth');
+//-----taylor-----
+Route::get('/superadmin_detailtaylor',[App\Http\Controllers\SuperadminController::class,'dtpr'])->middleware('auth');
+Route::get('cekpenjahit',[App\Http\Controllers\SuperadminController::class, 'cekpenjahit'])->middleware('auth');
+//-----add user-----
+Route::get('/superadmin_adduser', function () {
+    return view('superadmin.superadmin_adduser');
 })->middleware('auth');
-
-Route::get('/payroll+', function () {
-    return view('payroll+');
+Route::post('adduser', [App\Http\Controllers\SuperadminController::class,'adduser'])->middleware('auth');
+//-----accounting-----
+Route::get('/superadmin_accounting', function () {
+    return view('superadmin_accounting');
 })->middleware('auth');
+Route::get('/superadmin_accounting', [App\Http\Controllers\SuperadminController::class,'view_users'])->middleware('auth');
+Route::get('superadmin_updateuser', [App\Http\Controllers\SuperadminController::class,'superadmin_updateuser'])->middleware('auth');
+Route::get('superadmin_deleteuser', [App\Http\Controllers\SuperadminController::class,'superadmin_deleteuser'])->middleware('auth');
+Route::post('superadmin_simpanuser', [App\Http\Controllers\SuperadminController::class,'superadmin_simpanuser'])->middleware('auth');
 
-Route::post('tambahpenjahit', [App\Http\Controllers\TestController::class,'tambahpenjahit'])->middleware('auth');
+//===============================================================================================================================
+// TUKANG POTONG
+Route::get('/tukangpotong', [App\Http\Controllers\TukangpotongController::class, 'index'])->middleware('auth');
+Route::get('/tukangpotong', [App\Http\Controllers\TukangpotongController::class,'view_inv'])->middleware('auth');
+Route::get('/home', [App\Http\Controllers\TukangpotongController::class,'view_inv'])->middleware('auth');
+//-----manufaktur-----
+Route::get('tukangpotong_manufaktur',[App\Http\Controllers\TukangpotongController::class, 'test'])->middleware('auth');
+Route::post('tukangpotong_simpanproduk',[App\Http\Controllers\TukangpotongController::class, 'tukangpotong_simpanproduk'])->middleware('auth');
 
-Route::get('/detailtaylor',[App\Http\Controllers\TestController::class,'dtpr'])->middleware('auth');
+//===============================================================================================================================
+// SUPERVISOR PABRIK
+Route::get('/supervisorpabrik', [App\Http\Controllers\SupervisorpabrikController::class, 'index'])->middleware('auth');
+Route::get('/supervisorpabrik', [App\Http\Controllers\SupervisorpabrikController::class,'view_inv'])->middleware('auth');
+Route::get('/home', [App\Http\Controllers\SupervisorpabrikController::class,'view_inv'])->middleware('auth');
+//-----payroll-----
+Route::get('/supervisorpabrik_payroll', [App\Http\Controllers\SupervisorpabrikController::class,'view_jahit'])->middleware('auth');
+Route::get('supervisorpabrik_payroll1', [App\Http\Controllers\SupervisorpabrikController::class,'supervisorpabrik_payroll1'])->middleware('auth');
+Route::patch('supervisorpabrik_tambahpenjahit', [App\Http\Controllers\SupervisorpabrikController::class,'supervisorpabrik_tambahpenjahit'])->middleware('auth');
+//-----taylor-----
+Route::get('/supervisorpabrik_detailtaylor',[App\Http\Controllers\SupervisorpabrikController::class,'dtpr'])->middleware('auth');
+Route::get('cekpenjahit',[App\Http\Controllers\SupervisorpabrikController::class, 'cekpenjahit'])->middleware('auth');
 
-Route::post('cekpenjahit','App\Http\Controllers\TestController@cekpenjahit')->middleware('auth');
 
-Route::get('/payroll', [App\Http\Controllers\TestController::class,'view_jahit'])->middleware('auth');
-
-Route::get('/adduser', function () {
-    return view('adduser');
+//===============================================================================================================================
+// ACCOUNTING
+Route::get('/accountingg', [App\Http\Controllers\AccountingController::class, 'index'])->middleware('auth');
+Route::get('/accountingg', [App\Http\Controllers\AccountingController::class,'view_inv'])->middleware('auth');
+Route::get('/home', [App\Http\Controllers\AccountingController::class,'view_inv'])->middleware('auth');
+Route::get('/accountingg_accounting', function () {
+    return view('accountingg/accounting');
 })->middleware('auth');
+Route::get('/accountingg_accounting', [App\Http\Controllers\AccountingController::class,'view_users'])->middleware('auth');
 
-Route::post('adduser', [App\Http\Controllers\TestController::class,'adduser'])->middleware('auth');
-
-
-
+Route::get('accountingg_updateuser', [App\Http\Controllers\AccountingController::class,'accountingg_updateuser'])->middleware('auth');
+Route::get('accountingg_deleteuser', [App\Http\Controllers\AccountingController::class,'accountingg_deleteuser'])->middleware('auth');
+Route::post('accountingg_simpanuser', [App\Http\Controllers\AccountingController::class,'accountingg_simpanuser'])->middleware('auth');

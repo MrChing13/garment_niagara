@@ -19,25 +19,9 @@
 
         <ul class="nav_list">
             <li>
-                <a href="/home">
+                <a href="/supervisorpabrik">
                     <i class='bx bxs-home'></i>
                     <span class="links_name">H O M E</span>
-                </a>
-                <!-- <span class="links_name">H O M E</span> -->
-            </li>
-
-            <li>
-                <a href="/manufaktur">
-                    <i class='bx bxs-briefcase-alt-2'></i>
-                    <span class="links_name">M A N U F A C T U R E</span>
-                </a>
-                <!-- <span class="links_name">H O M E</span> -->
-            </li>
-
-            <li>
-                <a href="/inventory1">
-                    <i class='bx bxs-building'></i>
-                    <span class="links_name">I N V E N T O R Y</span>
                 </a>
                 <!-- <span class="links_name">H O M E</span> -->
             </li>
@@ -48,11 +32,11 @@
                 <i class='bx bx-columns'></i>
                 <span class="dropbtn">P A Y R O L L</span>
                 <div class="dropdown-content">
-                    <a href="/payroll">
+                    <a href="/supervisorpabrik_payroll">
                         <i class='bx bxs-message-alt-add'></i>
                         <span class="links_name">T A Y L O R</span>
                     </a>
-                    <a href="/detailtaylor">
+                    <a href="/supervisorpabrik_detailtaylor">
                         <i class='bx bxs-user-detail'></i>
                         <span class="links_name">D E T A I L</span>
                     </a>
@@ -61,18 +45,6 @@
 
             </li>
        
-            <li>
-                <a href="/adduser">
-                    <i class='bx bxs-user-plus' ></i>
-                    <span class="links_name">A D D - U S E R</span>
-                </a>
-            </li>
-            <li>
-                <a href="/accounting">
-                    <i class='bx bxs-user-plus' ></i>
-                    <span class="links_name">A C C O U N T I N G</span>
-                </a>
-            </li>
             <li>
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
@@ -87,7 +59,7 @@
                 
             </li>
         </ul>
-        @yield('sidebar')
+        @yield('supervisorpabrik_sidebar')
 
 </body>
 </html>

@@ -24,8 +24,8 @@
 @endsection
 
 
-@extends('layouts.sidebar')
-@section('sidebar')
+@extends('layouts.tukangpotong_sidebar')
+@section('tukangpotong_sidebar')
     </div>
     
     @extends('layouts.navbar')
@@ -37,7 +37,27 @@
         <div class="box_outter">
             <div class="box1">
                 <div class="box_header"> Employee Stats
+                </div>
 
+                <div class="tabel">
+                <table>
+                <thead class="th" style="color:#474444;">
+                    <th> ID </th>
+                    <th> Nama </th>
+                    <th> No HP</th>
+                    <th> Role </th>
+                </thead>
+                <tbody style="text-align: center; color :#474444;">
+                        @foreach($data1 as $item1)
+                        <tr>
+                            <td>{{ $item1->id }}</td>
+                            <td>{{ $item1->first_name }} {{ $item1->last_name }} </td>
+                            <td>{{ $item1->no_hp }}</td>
+                            <td>{{ $item1->role }} </td>
+                        </tr>
+                        @endforeach
+                </tbody>
+                </table>
                 </div>
             </div>
 

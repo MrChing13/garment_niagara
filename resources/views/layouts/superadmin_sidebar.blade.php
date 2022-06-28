@@ -19,7 +19,7 @@
 
         <ul class="nav_list">
             <li>
-                <a href="/home">
+                <a href="/superadmin">
                     <i class='bx bxs-home'></i>
                     <span class="links_name">H O M E</span>
                 </a>
@@ -27,15 +27,15 @@
             </li>
 
             <li>
-                <a href="/manufaktur">
+                <a href="/superadmin_manufaktur">
                     <i class='bx bxs-briefcase-alt-2'></i>
                     <span class="links_name">M A N U F A C T U R E</span>
                 </a>
                 <!-- <span class="links_name">H O M E</span> -->
             </li>
-
+            
             <li>
-                <a href="/inventory1">
+                <a href="/superadmin_inventory1">
                     <i class='bx bxs-building'></i>
                     <span class="links_name">I N V E N T O R Y</span>
                 </a>
@@ -48,11 +48,11 @@
                 <i class='bx bx-columns'></i>
                 <span class="dropbtn">P A Y R O L L</span>
                 <div class="dropdown-content">
-                    <a href="/payroll">
+                    <a href="/superadmin_payroll">
                         <i class='bx bxs-message-alt-add'></i>
                         <span class="links_name">T A Y L O R</span>
                     </a>
-                    <a href="/detailtaylor">
+                    <a href="/superadmin_detailtaylor">
                         <i class='bx bxs-user-detail'></i>
                         <span class="links_name">D E T A I L</span>
                     </a>
@@ -62,18 +62,22 @@
             </li>
        
             <li>
-                <a href="/adduser">
+                <a href="/superadmin_adduser">
                     <i class='bx bxs-user-plus' ></i>
                     <span class="links_name">A D D - U S E R</span>
                 </a>
             </li>
             <li>
-                <a href="/accounting">
+                <a href="/superadmin_accounting">
                     <i class='bx bxs-user-plus' ></i>
                     <span class="links_name">A C C O U N T I N G</span>
                 </a>
             </li>
             <li>
+                <!-- <a href="/home">
+                    <i class='bx bxs-log-out'></i>
+                    <span class="links_name">L O G - O U T</span>
+                </a> -->
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
@@ -87,7 +91,7 @@
                 
             </li>
         </ul>
-        @yield('sidebar')
+        @yield('superadmin_sidebar')
 
 </body>
 </html>

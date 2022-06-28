@@ -1,6 +1,6 @@
 
-@extends('layouts.sidebar')
-@section('sidebar')
+@extends('layouts.superadmin_sidebar')
+@section('superadmin_sidebar')
     </div>
 
     
@@ -16,6 +16,12 @@
 
 
             <form method="POST" action="tambahproduk">
+                @if(Session::has('success'))
+                    <script>
+                        var message="{{ Session::get('success') }}"
+                        alert(message);
+                    </script>
+                @endif
 
                 {{ csrf_field() }}
                 <div class="box_list1">  
@@ -26,6 +32,7 @@
                 <div class="box_list1"> 
                     <span style="padding-right : 40px;" class="details">Kategori Produk  </span>
                     <input type="text" name="kategori" placeholder="Kategori Produk" required>
+                   
                 </div>
                 <br/>
                 <div class="box_list1">     

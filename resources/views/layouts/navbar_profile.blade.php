@@ -7,14 +7,14 @@
                 </a>
             </li> -->
             <li>
-                <a href="#">
+                <!-- <a href="#">
                     <i class='bx bxs-bell' ></i>
-                </a>
+                </a> -->
             </li>
             <li>
-                <a href="#">
+                <!-- <a href="#">
                     <i class='bx bxs-user' ></i>
-                </a>
+                </a> -->
             </li>
         </div>
         @yield('navbar_profile')

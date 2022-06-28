@@ -1,6 +1,6 @@
 
-@extends('layouts.sidebar')
-@section('sidebar')
+@extends('layouts.tukangpotong_sidebar')
+@section('tukangpotong_sidebar')
     </div>
 
     @extends('layouts.navbar_profile')
@@ -15,8 +15,13 @@
             </div>  
 
 
-            <form method="POST" action="simpanproduk">
-
+            <form method="POST" action="tukangpotong_simpanproduk">
+                @if(Session::has('success'))
+                    <script>
+                        var message="{{ Session::get('success') }}"
+                        alert(message);
+                    </script>
+                @endif
                  {{ csrf_field() }}
                 <div class="box_list1">  
                     

@@ -6,9 +6,17 @@ body{
     width: 100%;
     overflow: hidden;
 }
-th{
-    padding-bottom: 12px;
+
+.tabel{
+    top: 0;
+    /* padding: 0;
+    padding-top: 0px; */
 }
+
+th{
+    padding-bottom: 5px;
+}
+
  td {
     padding-top: 7px;
     padding-bottom: 7px;
